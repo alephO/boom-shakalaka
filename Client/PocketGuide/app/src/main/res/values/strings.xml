@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PocketGuide</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_choose__destination">Choose Destination</string>
+    <string name="title_activity_fill__information">Fill Information</string>
+    <string name="title_activity_confirmation__page">Confirmation Page</string>
+    <string name="title_activity_client__chat">Chat</string>
+    <string name="title_activity_pending">Pending</string>
+    <string name="title_activity_pending__detail">Pending Detail</string>
+    <string name="title_activity_upcoming">Upcoming</string>
+    <string name="title_activity_upcoming__detail">Upcoming Detail</string>
+    <string name="title_activity_previous">Previous</string>
+    <string name="title_activity_previous__detail">Previous Detail</string>
+    <string name="title_activity_client__chat__history">Chat History</string>
+    <string name="title_activity_client__profile">Profile</string>
+</resources>
