@@ -20,6 +20,12 @@
     <string name="search_slogan">Where are you going?</string>
     <string name="search_cancel">Cancel</string>
     <string name="search_query_hint">Where are you going?</string>
+    <string name="Data_solgan">Date (When will you be there?)</string>
+    <string name="requirements">Requirements</string>
+    <string name="requirements_hint">Sort your requirements</string>
+    <string name="requirements_prompt">Choose a requirement</string>
+    <string name="title_notes">Notes</string>
+    <string name="confirm_btn">Confirm</string>
     <string-array name="location_list">
         <item>boston</item>
         <item>newyork</item>
@@ -27,5 +33,11 @@
         <item>chicago</item>
         <item>waltham</item>
         <item>watertown</item>
+    </string-array>
+    <string-array name="requirements_array">
+        <item>SiteSeeing</item>
+        <item>Eat and Drink</item>
+        <item>Shopping</item>
+        <item>Transportation</item>
     </string-array>
 </resources>
