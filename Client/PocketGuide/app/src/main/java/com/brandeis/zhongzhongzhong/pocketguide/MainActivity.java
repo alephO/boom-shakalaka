@@ -1,37 +1,58 @@
 package com.brandeis.zhongzhongzhong.pocketguide;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.content.pm.ActivityInfo;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TabHost;
+import android.app.Activity;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends Activity {
+private TabHost myTabHost;
+    private static final String TAG = "Event";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        myTabHost = (TabHost) findViewById(R.id.tabHost);
+        myTabHost.setup();
+        /*TabHost.TabSpec spec = myTabHost.newTabSpec("Start");
+        spec.setIndicator("Start");
+        spec.setContent(R.id.Client_tab1);
+*/
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        myTabHost.addTab(myTabHost.newTabSpec("Start")
+                .setIndicator("Start")
+                .setContent(R.id.Client_tab1));
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        myTabHost.addTab(myTabHost.newTabSpec("Chat")
+                .setIndicator("Chat")
+                .setContent(R.id.Client_tab2));
 
-        return super.onOptionsItemSelected(item);
-    }
+        myTabHost.addTab(myTabHost.newTabSpec("Your Trip")
+                .setIndicator("Your Trip")
+                .setContent(R.id.Client_tab3));
+
+        myTabHost.addTab(myTabHost.newTabSpec("Profile")
+                .setIndicator("Profile")
+                .setContent(R.id.Client_tab4));
+
+
+        Button search_button = (Button) findViewById(R.id.index_search_button);
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent intent = new Intent(Index_Page.this, Choose_Destination.class);
+                startActivity(new Intent("com.brandeis.Choose_Destination"));
+                //Log.d(TAG, "start a new activity");
+            }
+        });
+
+}
+
 }

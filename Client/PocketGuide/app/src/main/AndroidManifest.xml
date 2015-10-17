@@ -9,20 +9,28 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Choose_Destination"
             android:label="@string/title_activity_choose__destination" >
+            <intent-filter>
+                <action android:name="com.brandeis.Choose_Destination"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".Fill_Information"
             android:label="@string/title_activity_fill__information" >
+            <intent-filter>
+                <action android:name="com.brandeis.Fill_Information"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".Confirmation_Page"
@@ -63,6 +71,10 @@
         <activity
             android:name=".Client_Profile"
             android:label="@string/title_activity_client__profile" >
+        </activity>
+        <activity
+            android:name=".Index_Page"
+            android:label="@string/title_activity_index__page" >
         </activity>
     </application>
 

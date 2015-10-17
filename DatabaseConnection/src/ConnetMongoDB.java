@@ -56,22 +56,6 @@ public class ConnetMongoDB {
 				}
 			});
 			
-			FindIterable<Document> iterable2 = db.getCollection("restaurant").find(new Document("borough","Manhatten"));
-			iterable2.forEach(new Block<Document>(){
-				public void apply(final Document document){
-					System.out.print(document);
-					System.out.print("\n");
-				}
-			});
-			
-			FindIterable<Document> iterable3 = db.getCollection("restaurant").find(new Document("borough","Manhatten"));
-			iterable3.forEach(new Block<Document>(){
-				public void apply(final Document document){
-					System.out.print(document);
-					System.out.print("\n");
-				}
-			});
-			
 			
 			
 			mongoClient.close();

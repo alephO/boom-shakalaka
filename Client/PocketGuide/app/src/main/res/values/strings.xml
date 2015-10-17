@@ -15,4 +15,17 @@
     <string name="title_activity_previous__detail">Previous Detail</string>
     <string name="title_activity_client__chat__history">Chat History</string>
     <string name="title_activity_client__profile">Profile</string>
+    <string name="index_page_title">Where is your next destination?</string>
+    <string name="title_activity_index__page">Index Page</string>
+    <string name="search_slogan">Where are you going?</string>
+    <string name="search_cancel">Cancel</string>
+    <string name="search_query_hint">Where are you going?</string>
+    <string-array name="location_list">
+        <item>boston</item>
+        <item>newyork</item>
+        <item>san fransisco</item>
+        <item>chicago</item>
+        <item>waltham</item>
+        <item>watertown</item>
+    </string-array>
 </resources>
