@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.util.Log;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
+import android.content.Intent;
 
 public class Fill_Information extends AppCompatActivity {
     private static final String TAG = "test";
@@ -46,8 +47,23 @@ public class Fill_Information extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                   Log.d(TAG,"test");
+                Intent intent = new Intent(Fill_Information.this, Confirmation_Page.class);
+                startActivity(intent);
             }
         };
         confirmbtn.setOnClickListener(clkconfirmbtn);
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.d(TAG, "In the onPause() event");
+    }
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "In the onStop() event");
+    }
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG, "In the onDestroy() event");
     }
 }

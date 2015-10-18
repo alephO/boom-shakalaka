@@ -26,6 +26,9 @@
     <string name="requirements_prompt">Choose a requirement</string>
     <string name="title_notes">Notes</string>
     <string name="confirm_btn">Confirm</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="congratulations_text">Your request has been submitted ! A local guide will be assigned to you soon !</string>
+    <string name="congratulations_done">Done</string>
     <string-array name="location_list">
         <item>boston</item>
         <item>newyork</item>
