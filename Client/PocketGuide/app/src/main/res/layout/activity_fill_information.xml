@@ -14,6 +14,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/fillinformation_location_title" />
 
         <TextView
@@ -22,15 +23,33 @@
             android:text="@string/Data_solgan"
             android:id="@+id/fillinformation_location_dateslogan" />
 
-        <DatePicker
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:id="@+id/fillinformation_datePicker" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/fillinformation_fromdate_editText"
+                android:hint="@string/from_date" />
+
+            <EditText
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/fillinformation_todate_editText"
+                android:hint="@string/to_date" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/requirements"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/fillinformation_location_requirements" />
 
         <TextView
