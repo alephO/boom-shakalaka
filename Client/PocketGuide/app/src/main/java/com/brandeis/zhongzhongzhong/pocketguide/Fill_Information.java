@@ -25,6 +25,8 @@ import java.util.Locale;
 
 public class Fill_Information extends AppCompatActivity {
     private static final String TAG = "test";
+    final EditText et = (EditText) findViewById(R.id.fillinformation_note);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,12 +106,22 @@ public class Fill_Information extends AppCompatActivity {
             }
         });
 
+
+
+
         Button confirmbtn = (Button) findViewById(R.id.fillinformation_confirmbtn);
 
         View.OnClickListener clkconfirmbtn = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  Log.d(TAG,"test");
+
+
+                /*
+                This is where all variables should be encoded and sent to server.
+
+                 */
+
+
                 Intent intent = new Intent(Fill_Information.this, Confirmation_Page.class);
                 startActivity(intent);
             }

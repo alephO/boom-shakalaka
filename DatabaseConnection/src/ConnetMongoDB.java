@@ -14,14 +14,15 @@ import static java.util.Arrays.asList;
 
 
 public class ConnetMongoDB {
-
+	
 	public static void main(String[] args) {
+		String a = "123";
 		try{
 			MongoClient mongoClient = new MongoClient ("localhost", 27017);
 			MongoDatabase db = mongoClient.getDatabase("test");
-			
+			/*
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
-			/*db.getCollection("restaurant").insertOne(
+			db.getCollection("restaurant").insertOne(
 					new Document(
 							"address", new Document()
 							.append("street","2 Avenue")
@@ -46,15 +47,43 @@ public class ConnetMongoDB {
 					.append("restaurant_id","41704620")
 					
 			);*/
+			String User_name= new String();
+			DateFormat DateFrom = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+			DateFormat DateTo = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+			String Note = new String();
+			String Requirement_1 = new String();
+			String Requirement_2 = new String();
+			String Requirement_3 = new String();
+			String Requirement_4 = new String();
+			String Location = new String();
+			
+			
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+			db.getCollection("Requst").insertOne(
+					new Document()
+					.append("username", User_name)
+					.append("datefrom", DateFrom)
+					.append("dateto", DateTo)
+					.append("note", Note)
+					.append("requirement_1", Requirement_1)
+					.append("requirement_2",Requirement_2)
+					.append("requirement_3",Requirement_3)
+					.append("requirement_4",Requirement_4)
+					.append("location",Location)
+					);
 			
 			FindIterable<Document> iterable = db.getCollection("restaurant").find();
 			iterable.forEach(new Block<Document>(){
 				public void apply(final Document document){
 					System.out.print(document);
 					System.out.print("\n");
-					System.out.print("\n");
+					System.out.print("\n"); 
 				}
 			});
+			
+			
+		
+		
 			
 			
 			
