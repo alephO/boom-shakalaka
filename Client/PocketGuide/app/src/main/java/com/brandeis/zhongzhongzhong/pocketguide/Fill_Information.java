@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class Fill_Information extends AppCompatActivity {
     private static final String TAG = "test";
-    final EditText et = (EditText) findViewById(R.id.fillinformation_note);
+    //final EditText et = (EditText) findViewById(R.id.fillinformation_note);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

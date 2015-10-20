@@ -32,7 +32,7 @@ public class Choose_Destination extends AppCompatActivity {
 
         AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.Chooselocation_autoCompleteTextView);
 
-        autoCompleteTextView.setThreshold(2);
+        autoCompleteTextView.setThreshold(1);
         autoCompleteTextView.setAdapter(adapter);
 
         /* finish the activity, go back to the index page*/
