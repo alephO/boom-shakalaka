@@ -8,14 +8,10 @@ import android.content.pm.ActivityInfo;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.app.Activity;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 private TabHost myTabHost;
@@ -49,53 +45,7 @@ private TabHost myTabHost;
                 .setIndicator("Profile")
                 .setContent(R.id.Client_tab4));
 
-/*
 
-
-        class MyPagerAdapter extends PagerAdapter {
-
-            @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                TextView view = new TextView(MainActivity.this);
-                view.setText("Item "+position);
-                view.setGravity(Gravity.CENTER);
-                view.setBackgroundColor(Color.argb(255, position * 50, position * 10, position * 50));
-
-                container.addView(view);
-                return view;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-                container.removeView((View)object);
-            }
-
-            @Override
-            public int getCount() {
-                return 5;
-            }
-
-            @Override
-            public boolean isViewFromObject(View view, Object object) {
-                return (view == object);
-            }
-        }
-
-        //ImageView cover_flow = (ImageView) findViewById();
-        PagerContainer mContainer = (PagerContainer) findViewById(R.id.pager_container);
-        ViewPager pager = mContainer.getViewPager();
-        PagerAdapter adapter = new MyPagerAdapter();
-        pager.setAdapter(adapter);
-        //Necessary or the pager will only have one extra page to show
-        // make this at least however many pages you can see
-        pager.setOffscreenPageLimit(adapter.getCount());
-        //A little space between pages
-        pager.setPageMargin(15);
-
-        //If hardware acceleration is enabled, you should also remove
-        // clipping on the pager for its children.
-        pager.setClipChildren(false);
-*/
         Button search_button = (Button) findViewById(R.id.index_search_button);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
