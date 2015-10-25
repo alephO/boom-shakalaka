@@ -30,7 +30,7 @@ void signal_handler(int arg)
 {
 	if(arg==SIGTERM){
 		fclose(fp);
-		//jvm->DestroyJavaVM();
+		(*jvm)->DestroyJavaVM(jvm);
 		exit(0);
 	}
 }
