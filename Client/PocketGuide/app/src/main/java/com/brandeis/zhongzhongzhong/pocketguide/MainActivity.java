@@ -15,7 +15,7 @@ import android.app.Activity;
 
 public class MainActivity extends Activity {
 private TabHost myTabHost;
-    private static final String TAG = "Event";
+    private static final String tag = "Event";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,40 @@ private TabHost myTabHost;
             }
         });
     }
+
+    public void onStart()
+    {
+        super.onStart();
+        Log.d(tag, "In the onStart() event");
+    }
+
+    public void onRestart()
+    {
+        super.onRestart();
+        Log.d(tag, "In the onRestart() event");
+    }
+
+    public void onResume()
+    {
+        super.onResume();
+        Log.d(tag, "In the onResume() event");
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.d(tag, "In the onPause() event");
+    }
+
+    public void onStop(){
+        super.onStop();
+        Log.d(tag, "In the onStop() event");
+    }
+
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d(tag, "In the onDestroy() event");
+    }
+
 
 
 

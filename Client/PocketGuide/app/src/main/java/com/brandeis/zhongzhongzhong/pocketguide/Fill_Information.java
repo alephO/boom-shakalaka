@@ -115,12 +115,10 @@ public class Fill_Information extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 /*
                 This is where all variables should be encoded and sent to server.
 
                  */
-
 
                 Intent intent = new Intent(Fill_Information.this, Confirmation_Page.class);
                 startActivity(intent);

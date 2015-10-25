@@ -40,7 +40,7 @@
         <item>watertown</item>
     </string-array>
     <string-array name="requirements_array">
-        <item>SiteSeeing</item>
+        <item>SightSeeing</item>
         <item>Eat and Drink</item>
         <item>Shopping</item>
         <item>Transportation</item>

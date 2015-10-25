@@ -9,6 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.bson.types.*;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.*;
 
 import static java.util.Arrays.asList;
 
@@ -16,7 +21,6 @@ import static java.util.Arrays.asList;
 public class ConnetMongoDB {
 	
 	public static void main(String[] args) {
-		String a = "123";
 		try{
 			MongoClient mongoClient = new MongoClient ("localhost", 27017);
 			MongoDatabase db = mongoClient.getDatabase("test");
@@ -47,7 +51,16 @@ public class ConnetMongoDB {
 					.append("restaurant_id","41704620")
 					
 			);*/
+				
+			
+			
+			
+			/*Tourist add a new record to the requirement */
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+			BasicDBObject request = new BasicDBObject();
+			
 			String User_name= new String();
+			String Guide_name = new String();
 			DateFormat DateFrom = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 			DateFormat DateTo = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 			String Note = new String();
@@ -56,22 +69,63 @@ public class ConnetMongoDB {
 			String Requirement_3 = new String();
 			String Requirement_4 = new String();
 			String Location = new String();
+			String Status = "pending";
+			
+			BasicDBObject query = new BasicDBObject();
+			query.put("username", User_name);
+			DBCollection a = (DBCollection) db.getCollection("User");
+			Object tourist_id = a.findOne(query).get("_id");
+			a.findOne(query).get("tourist_request").;
 			
 			
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-			db.getCollection("Requst").insertOne(
-					new Document()
-					.append("username", User_name)
-					.append("datefrom", DateFrom)
-					.append("dateto", DateTo)
-					.append("note", Note)
-					.append("requirement_1", Requirement_1)
-					.append("requirement_2",Requirement_2)
-					.append("requirement_3",Requirement_3)
-					.append("requirement_4",Requirement_4)
-					.append("location",Location)
-					);
+			DBCollection requestcollection = (DBCollection) db.getCollection("Request"); 
 			
+			request.append("datefrom", DateFrom);
+			request.append("dateto", DateTo);
+			request.append("note", Note);
+			request.append("requirement_1", Requirement_1);
+			request.append("requirement_2",Requirement_2);
+			request.append("requirement_3",Requirement_3);
+			request.append("requirement_4",Requirement_4);
+			request.append("location",Location);
+			request.append("status", Status);
+			request.append("username_id",new Document()
+				.append("tourist", tourist_id)
+			);
+					
+			requestcollection.insert(request);
+			Object request_id = request.get("_id");
+			
+			
+			db.getCollection("User").insertOne(arg0);
+			
+			
+			/* user registration */
+			BasicDBObject user = new BasicDBObject();
+			String Username = new String();
+			String Email = new String();
+			String Password = new String();
+			String Account = new String();  /* tourist or guide */
+			String tourist_request[] = new String[]{};
+			
+			DBCollection usercollection = (DBCollection) db.getCollection("User");
+			
+			user.append("username", Username);
+			user.append("password", Password);
+			user.append("Email", Email);
+			user.append("tourist_request", asList(tourist_request)); // tourist refer to request.
+			usercollection.insert(user);
+			
+			
+			
+			ObjectId user_id = (ObjectId)user.get("_id");
+			
+			
+			
+			
+			
+			
+			/*
 			FindIterable<Document> iterable = db.getCollection("restaurant").find();
 			iterable.forEach(new Block<Document>(){
 				public void apply(final Document document){
@@ -79,7 +133,7 @@ public class ConnetMongoDB {
 					System.out.print("\n");
 					System.out.print("\n"); 
 				}
-			});
+			});*/
 			
 			
 		
@@ -94,5 +148,5 @@ public class ConnetMongoDB {
 		}
 
 	}
-
+	
 }
