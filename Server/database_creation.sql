@@ -71,12 +71,19 @@ insert into request(tourist,requirement_1,requirement_2,requirement_3,requiremen
 	'2015-10-25','2015-10-28','pending',
 	(select nation_id from nation where nation_name = 'United States'));
 
-
+/* dummy guide accept a request */
 Update request set guide = (select user_id from guides where user_name = 'chaoliu'), status = 'upcoming'
 	where request_id = '4';
 
+/* dummy cancel a request*/
 Delete from request where request_id = '3';
 
 select * from request where tourist = (select user_id from tourists where user_name = 'jackzhong') AND status = 'pending';
-
+/* dummy message between user1 and user2 */
+insert into message(user_1, user_2, time, content) values (
+	(select user_id from tourists where user_name = 'jackzhong'),
+	(select user_id from guides where user_name = 'chaoliu'),
+	'2015-10-25 10:23:42+02',
+	'hello world!'
+);
 
