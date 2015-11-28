@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,8 +22,9 @@ public class Choose_Destination extends AppCompatActivity {
 
     /* location list should be retrieved from database, but now just use string stored in the resource file*/
     public String [] location;
-    public static final String TAG = "create?";
-    DBHelper mydb;
+    public static final String TAG = "selected";
+    ArrayAdapter<String> adapter;
+    //DBHelper mydb;
 
 
     @Override
@@ -31,15 +33,15 @@ public class Choose_Destination extends AppCompatActivity {
         /*hide title bar*/
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_choose_destination);
-        //location = getResources().getStringArray(R.array.location_list);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, location);
-        mydb = new DBHelper(this);
-        ArrayList array_list = mydb.getAllNations();
+        location = getResources().getStringArray(R.array.location_list);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, location);
+        //mydb = new DBHelper(this);
+        //ArrayList array_list = mydb.getAllNations();
         //Log.d(TAG, array_list.get(1));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array_list);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array_list);
         AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.Chooselocation_autoCompleteTextView);
 
-        autoCompleteTextView.setThreshold(1);
+        autoCompleteTextView.setThreshold(2);
         autoCompleteTextView.setAdapter(adapter);
 
         /* finish the activity, go back to the index page*/
@@ -59,7 +61,10 @@ public class Choose_Destination extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent("com.brandeis.Fill_Information");
                 /*Bundle extras = new Bundle();*/
-                i.putExtra("location_name", location[position]);
+                String text = ((TextView) view).getText().toString();
+                //Log.d(TAG, text);
+                //int selected = adapter.getPosition(text);
+                i.putExtra("location_name", text);
                 startActivity(i);
             }
         });
