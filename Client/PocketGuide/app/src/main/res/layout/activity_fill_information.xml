@@ -58,12 +58,20 @@
             android:text="@string/requirements_hint"
             android:id="@+id/fillinformation_location_hint" />
 
-        <Spinner
-            android:layout_width="fill_parent"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/mainLayout"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fillinformation_location_requirements_dropdown"
-            android:entries="@array/requirements_array"
-            android:prompt="@string/requirements_prompt" />
+            tools:context=".ListViewAnimations" >
+
+        <com.brandeis.zhongzhongzhong.pocketguide.DynamicListView
+            android:id="@+id/listview"
+            android:background="#0000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
