@@ -1,6 +1,7 @@
 package me.aleph0.test1;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -13,30 +14,13 @@ import java.net.Socket;
 
 public class MainActivity extends Activity {
 
-	String hostname="45.55.56.17";
-	int portnum = 6179;
+	static final String hostname="boom.aleph0.me";
+	static final int portnum = 6179;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		try {
-			Socket echoSocket = new Socket(hostname, portnum);
-			PrintWriter uout = new PrintWriter(echoSocket.getOutputStream(), true);
-			BufferedReader uin =
-					new BufferedReader(
-							new InputStreamReader(echoSocket.getInputStream()));
-			BufferedReader stdIn =
-					new BufferedReader(
-							new InputStreamReader(System.in));
-			uout.write("inital\n");
-			uout.flush();
-			String recieve = uin.readLine();
-			Toast.makeText(getBaseContext(), recieve, Toast.LENGTH_SHORT).show();
-		}
-		catch (Exception e){
-			Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
-			Log.d("Fuck",e.toString());
-		}
+        new InitConnectTask().execute();
 	}
 
 	@Override
@@ -60,4 +44,35 @@ public class MainActivity extends Activity {
 
 		return super.onOptionsItemSelected(item);
 	}
+	class InitConnectTask extends AsyncTask<Void, Void, Socket> {
+        protected Socket doInBackground(Void...v){
+            Socket echoSocket=null;
+            try {
+                echoSocket = new Socket(hostname, portnum);
+                PrintWriter uout = new PrintWriter(echoSocket.getOutputStream(), true);
+                BufferedReader uin =
+                        new BufferedReader(
+                                new InputStreamReader(echoSocket.getInputStream()));
+                BufferedReader stdIn =
+                        new BufferedReader(
+                                new InputStreamReader(System.in));
+                uout.write("inital\n");
+                uout.flush();
+                String recieve = uin.readLine();
+                Toast.makeText(getBaseContext(), recieve, Toast.LENGTH_SHORT).show();
+
+            }
+            catch (Exception e){
+                Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("PocketGuide", e.toString());
+                this.cancel(true);
+            }
+            return echoSocket;
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+    }
 }
