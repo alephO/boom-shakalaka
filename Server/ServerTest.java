@@ -29,19 +29,27 @@ public class ServerTest {
 			public static void execute(Socket s) throws IOException{
 				Scanner sc=new Scanner(s.getInputStream());
 				boolean flag=true;
-				String st= sc.nextLine();
-				System.out.println(st);
+				String st;
 				OutputStream os=s.getOutputStream();
 				PrintWriter ps=new PrintWriter(os);
-				ps.println("You sent: "+st);
-				ps.flush();
-				while (flag){
-					if(st.equals("disconnect")){
-						flag=false;
-					}
+				while (true){
 					st= sc.nextLine();
 					System.out.println(st);
-					ps.println("You sent: "+st);
+					String [] parts = st.split("#");
+					if(parts[0].equals("*discon")){
+						break;
+					}
+					else if(parts[0].equals("*login")){
+						if(parts[1].equals("fuck")&&parts[2].equals("you"))
+							ps.println("*status#login#5");
+						else
+							ps.println("*status#login#-1");
+					}
+					else if(parts[0].equals("*chatt")){
+						ps.println("*chatf#-1#I'm not listening. FUCK YOU!");
+					}					
+					else
+						ps.println("*unexp#"+st);
 					ps.flush();
 				}				
 				ps.close();
