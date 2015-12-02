@@ -45,6 +45,8 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	class InitConnectTask extends AsyncTask<Void, Void, Socket> {
+        Exception excpt;
+        String r;
         protected Socket doInBackground(Void...v){
             Socket echoSocket=null;
             try {
@@ -58,16 +60,27 @@ public class MainActivity extends Activity {
                                 new InputStreamReader(System.in));
                 uout.write("inital\n");
                 uout.flush();
-                String recieve = uin.readLine();
-                Toast.makeText(getBaseContext(), recieve, Toast.LENGTH_SHORT).show();
+                r = uin.readLine();
 
             }
             catch (Exception e){
-                Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("PocketGuide", e.toString());
+                excpt=e;
                 this.cancel(true);
             }
             return echoSocket;
+        }
+
+        @Override
+        protected void onPostExecute(Socket socket) {
+            super.onPostExecute(socket);
+            Toast.makeText(getBaseContext(), r+"from"+socket.getLocalPort()+"to"+socket.getLocalPort()+socket.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected void onCancelled(Socket socket) {
+            super.onCancelled(socket);
+            Toast.makeText(getBaseContext(), excpt.toString(), Toast.LENGTH_SHORT).show();
+
         }
 
         @Override
