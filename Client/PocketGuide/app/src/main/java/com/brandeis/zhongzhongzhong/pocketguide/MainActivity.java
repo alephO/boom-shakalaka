@@ -280,7 +280,6 @@ public class MainActivity extends Activity {
 					else{
 						Toast.makeText(getBaseContext(), "Suceessful logged in!", Toast.LENGTH_SHORT).show();
 						uid= Integer.parseInt(parts[2]);
-						uname = parts[2];
 						t4T1.setText(uname);
 						t4T2.setText(parts[2]);
 						t4E1.setVisibility(View.GONE);
