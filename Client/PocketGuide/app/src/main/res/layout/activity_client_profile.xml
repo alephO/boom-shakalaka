@@ -18,25 +18,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="User name:\t\t"/>
+	        <EditText
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/t4EName" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/t4UName"
-                android:text="Not logged in"/>
+                android:text="Not logged in"
+	            android:visibility="gone"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="User ID:\t\t\t\t\t"/>
+	            android:id="@+id/t4l3"
+                android:text="Password:\t\t\t\t"/>
+	        <EditText
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/t4EPass"
+		        android:password="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/t4UID"
-                android:text="Will display when logged in"/>
+                android:text="Will display when logged in"
+	            android:visibility="gone"/>
         </LinearLayout>
 
         <Button
