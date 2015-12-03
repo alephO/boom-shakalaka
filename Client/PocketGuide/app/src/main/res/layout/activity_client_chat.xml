@@ -7,10 +7,21 @@
     tools:context="com.brandeis.zhongzhongzhong.pocketguide.Client_Chat">
 
 
-    <Button
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="chat with xxx"
-        android:id="@+id/chat_btn" />
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="chat with xxx"
+            android:id="@+id/chat_btn" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contact_list" />
+    </LinearLayout>
 
 </RelativeLayout>

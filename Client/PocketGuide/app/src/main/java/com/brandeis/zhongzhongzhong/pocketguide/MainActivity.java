@@ -70,22 +70,7 @@ public class MainActivity extends Activity {
             }
         };
         chat_btn.setOnClickListener(chat_btn_listener);
-//
-//        bookTabHost = (TabHost) findViewById(R.id.booktabHost);
-//        bookTabHost.setup();
-//
-//        bookTabHost.addTab(bookTabHost.newTabSpec("Upcoming")
-//        .setIndicator("Upcoming")
-//        .setContent(R.id.book_tab1));
-//
-//        bookTabHost.addTab(bookTabHost.newTabSpec("pending")
-//        .setIndicator("pending")
-//                .setContent(R.id.book_tab2)
-//        );
-//
-//        bookTabHost.addTab(bookTabHost.newTabSpec("Previous")
-//        .setIndicator("Previous")
-//        .setContent(R.id.book_tab3));
+
 
     }
 
