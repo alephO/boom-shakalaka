@@ -48,5 +48,7 @@
         android:layout_above = "@+id/MessageBox"
         android:transcriptMode = "@+id/alwaysScroll"
         android:stackFromBottom = "true"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
         />
 </RelativeLayout>

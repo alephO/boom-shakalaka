@@ -1,12 +1,12 @@
 package com.brandeis.zhongzhongzhong.pocketguide;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
 
-public class Pending extends AppCompatActivity {
+public class Pending extends Activity {
     private final static String TAG = "cvbc";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
