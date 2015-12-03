@@ -118,8 +118,12 @@ public class MainActivity extends Activity {
 		    public void onClick(View v) {
 			    uname = t4E1.getText().toString();
 			    String password = t4E2.getText().toString();
-			    if(uout!=null && uname!=null && password!=null){
+			    if(uout!=null && uname!=null && password!=null &&uid!=-1){
 				    uout.write("*login#"+uname+"#"+password+"#\n");
+				    uout.flush();
+			    }
+			    else if(uout!=null&&uid==-1){
+				    uout.write("*logout#\n");
 				    uout.flush();
 			    }
 			    else{
@@ -271,7 +275,7 @@ public class MainActivity extends Activity {
 						t4T2.setVisibility(View.GONE);
 						uid=-1;
 						t4L1.setText("Password\t\t\t");
-						btn.setText("Log out");
+						btn.setText("Log in");
 					}
 					else{
 						Toast.makeText(getBaseContext(), "Suceessful logged in!", Toast.LENGTH_SHORT).show();
@@ -284,8 +288,18 @@ public class MainActivity extends Activity {
 						t4T1.setVisibility(View.VISIBLE);
 						t4T2.setVisibility(View.VISIBLE);
 						t4L1.setText("User ID\t\t\t\t");
-						btn.setText("Log in");
+						btn.setText("Log out");
 					}
+				}
+				if(parts[1].equals("logout")){
+					Toast.makeText(getBaseContext(), "Suceessful logged out!", Toast.LENGTH_SHORT).show();
+					t4E1.setVisibility(View.VISIBLE);
+					t4E2.setVisibility(View.VISIBLE);
+					t4T1.setVisibility(View.GONE);
+					t4T2.setVisibility(View.GONE);
+					uid=-1;
+					t4L1.setText("Password\t\t\t");
+					btn.setText("Log out");
 				}
 			}
 			SendBroadcast(values[0]);
