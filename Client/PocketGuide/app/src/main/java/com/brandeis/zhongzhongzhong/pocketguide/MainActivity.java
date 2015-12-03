@@ -61,6 +61,15 @@ public class MainActivity extends Activity {
 
             }
         });
+
+        Button chat_btn = (Button) findViewById(R.id.chat_btn);
+        View.OnClickListener chat_btn_listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent("com.brandeis.ChatActivity"));
+            }
+        };
+        chat_btn.setOnClickListener(chat_btn_listener);
 //
 //        bookTabHost = (TabHost) findViewById(R.id.booktabHost);
 //        bookTabHost.setup();

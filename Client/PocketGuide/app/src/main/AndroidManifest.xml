@@ -41,6 +41,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ChatActivity"
+            android:label="@string/title_activity_chat_activity" >
+            <intent-filter>
+                <action android:name="com.brandeis.ChatActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Client_Chat"
             android:label="@string/title_activity_client__chat" >
         </activity>
