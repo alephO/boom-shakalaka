@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.app.Activity;
@@ -40,8 +41,8 @@ public class MainActivity extends Activity {
                 .setIndicator("Chat")
                 .setContent(R.id.Client_tab2));
 
-        myTabHost.addTab(myTabHost.newTabSpec("Your Trip")
-                .setIndicator("Your Trip")
+        myTabHost.addTab(myTabHost.newTabSpec("Trip")
+                .setIndicator("Trip")
                 .setContent(R.id.Client_tab3));
 
         myTabHost.addTab(myTabHost.newTabSpec("Profile")
@@ -49,7 +50,8 @@ public class MainActivity extends Activity {
                 .setContent(R.id.Client_tab4));
 
 
-        Button search_button = (Button) findViewById(R.id.index_search_button);
+        ImageButton search_button = (ImageButton) findViewById(R.id.index_search_button);
+        search_button.setBackgroundColor(Color.TRANSPARENT);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

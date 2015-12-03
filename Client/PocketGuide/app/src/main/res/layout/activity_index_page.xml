@@ -1,45 +1,41 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.brandeis.zhongzhongzhong.pocketguide.Index_Page">
+    android:background="@drawable/background"
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+
+    tools:context="com.brandeis.zhongzhongzhong.pocketguide.Index_Page">
 
 
         <ImageView
             android:layout_width="561dp"
             android:layout_height="365dp"
             android:id="@+id/imageView"
-            android:src="@mipmap/wallpaper"
             android:adjustViewBounds="true"
             android:scaleType = "centerCrop" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/index_search_button"
+            android:allowUndo="true"
+            android:src="@drawable/search"
+            android:longClickable="true"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/index_page_title"
             android:id="@+id/indexpage_title"
-            android:layout_gravity="center_horizontal" />
+            android:fontFamily="sans-serif-light"
+            android:textSize="70px"
+            android:textColor="#d6dfd8"
+            android:gravity="center" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_slogan"
-            android:id="@+id/index_search_button"
-            android:allowUndo="false"
-            android:longClickable="true" />
 
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

@@ -34,6 +34,8 @@
     <string name="upcoming_title">Upcoming Trips</string>
     <string name="pending_title">Pending Trips</string>
     <string name="previous_title">Previous Trips</string>
+    <color name="black">#000000</color>
+    <color name="white">#d6dfd8</color>
     <string-array name="location_list">
         <item>Afghanistan</item>
         <item>Albania</item>
