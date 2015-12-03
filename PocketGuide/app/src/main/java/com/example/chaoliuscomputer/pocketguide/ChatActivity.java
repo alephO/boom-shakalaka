@@ -1,5 +1,6 @@
 package com.example.chaoliuscomputer.pocketguide;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -19,6 +20,8 @@ import java.util.Calendar;
 
 public class ChatActivity extends Activity {
     private static final String TAG = ChatActivity.class.getSimpleName();;
+
+    private ChatDB chatDB;
 
     private ListView talkView;
 
@@ -44,6 +47,27 @@ public class ChatActivity extends Activity {
         talkView = (ListView) findViewById(R.id.list);
         messageButton = (Button) findViewById(R.id.MessageButton);
         messageText = (EditText) findViewById(R.id.MessageText);
+
+        chatDB = new ChatDB(this);
+        Cursor mCursor = chatDB.select();
+
+        for(mCursor.moveToFirst();!mCursor.isAfterLast();mCursor.moveToNext())
+        {
+            String c_name = mCursor.getString(1);
+            String c_date = mCursor.getString(2);
+            String c_text = mCursor.getString(3);
+            int RId ;
+            if(c_name.equals("ChaoLiu")){
+                RId= R.layout.list_he_item;
+            }
+            else{
+                RId=R.layout.list_me_item;
+            }
+            ChatMsgEntity newItem= new ChatMsgEntity(c_name,c_date,c_text,RId);
+            list.add(newItem);
+            talkView.setAdapter(new ChatMsgViewAdapter(ChatActivity.this, list));
+        }
+
         OnClickListener messageButtonListener = new OnClickListener() {
 
             @Override
@@ -56,11 +80,14 @@ public class ChatActivity extends Activity {
                 int RId = R.layout.list_he_item;
                 int RId2 = R.layout.list_me_item;
 
-                ChatMsgEntity newMessage = new ChatMsgEntity("Chao Liu", date, msgText, RId);
+                ChatMsgEntity newMessage = new ChatMsgEntity("ChaoLiu", date, msgText,RId);
                 list.add(newMessage);
-                ChatMsgEntity newMessage2 = new ChatMsgEntity("Tianjie Zhong", date, msgText, RId2);
+                chatDB.insert(newMessage.getName(), newMessage.getDate(), newMessage.getText());
+                ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
                 list.add(newMessage2);
                 // list.add(d0);
+                chatDB.insert(newMessage2.getName(), newMessage2.getDate(), newMessage2.getText());
+
                 talkView.setAdapter(new ChatMsgViewAdapter(ChatActivity.this, list));
                 messageText.setText("");
                 // myAdapter.notifyDataSetChanged();

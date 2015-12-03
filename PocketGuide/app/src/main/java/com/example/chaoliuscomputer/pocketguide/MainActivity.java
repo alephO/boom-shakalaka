@@ -1,6 +1,7 @@
 package com.example.chaoliuscomputer.pocketguide;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -12,6 +13,12 @@ import android.content.Intent;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.view.View;
+import android.widget.SimpleAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends Activity {
 
@@ -19,21 +26,23 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         String tag = "Events";
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);                 //*************
         Log.d(tag, "In the onCreate() event");
 
-        Button button1=(Button)findViewById(R.id.btnUpcoming);
+        Button button1 = (Button) findViewById(R.id.btnUpcoming);
         button1.setOnClickListener(button_listener1);
 
-        Button button2=(Button)findViewById(R.id.btnPrevious);
+        Button button2 = (Button) findViewById(R.id.btnPrevious);
         button2.setOnClickListener(button_listener2);
 
-        Button button3=(Button)findViewById(R.id.btnChat);
+        Button button3 = (Button) findViewById(R.id.btnChat);
         button3.setOnClickListener(button_listener3);
 
-        Button button4=(Button)findViewById(R.id.btnProfile);
+        Button button4 = (Button) findViewById(R.id.btnProfile);
         button4.setOnClickListener(button_listener4);
     }
+
+
 
     private Button.OnClickListener button_listener1 = new Button.OnClickListener() {
         public void onClick(View v) {
