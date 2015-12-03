@@ -41,15 +41,15 @@ public class ServerTest {
 					}
 					else if(parts[0].equals("*login")){
 						if(parts[1].equals("fuck")&&parts[2].equals("you"))
-							ps.println("*status#login#5");
+							ps.println("*status#login#5#");
 						else
-							ps.println("*status#login#-1");
+							ps.println("*status#login#-1#");
 					}
 					else if(parts[0].equals("*chatt")){
-						ps.println("*chatf#-1#I'm not listening. FUCK YOU!");
+						ps.println("*chatf#-1#I'm not listening. FUCK YOU!#");
 					}					
 					else
-						ps.println("*unexp#"+st);
+						ps.println("*unexp#"+st+"#");
 					ps.flush();
 				}				
 				ps.close();
