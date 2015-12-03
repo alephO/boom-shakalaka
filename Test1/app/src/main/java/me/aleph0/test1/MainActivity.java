@@ -42,8 +42,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		txtUNAME=(TextView)findViewById(R.id.tUName);
 		txtUID=(TextView)findViewById(R.id.tUID);
-		/*try {
-			//socket = new InitConnectTask().execute().get(30, TimeUnit.SECONDS);
+		try {
+			socket = new InitConnectTask().execute().get(30, TimeUnit.SECONDS);
 		}
 		catch (Exception e){
 			Toast.makeText(getBaseContext(), "Connection timeout", Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 		}
 		catch (IOException e){
 			Toast.makeText(getBaseContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
-		}*/
+		}
 		new RecieveTask().execute(socket);
 	}
 
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("me.aleph0.pocketguide.recievem");
 
-		this.registerReceiver(this.receiver, filter);
+		//this.registerReceiver(this.receiver, filter);
 	}
 
 	@Override
