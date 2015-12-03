@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/handsomeMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/me"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/handsomeMe"
+        android:text="Name：Liu\nGender:MALE\nFeature:handsome"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/btnChat"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/btnService"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Service"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btnChat" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textColor="#0000ff"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btnService" />
+
+</RelativeLayout>
