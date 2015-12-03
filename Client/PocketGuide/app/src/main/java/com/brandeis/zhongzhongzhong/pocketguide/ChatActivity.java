@@ -21,13 +21,15 @@ import java.util.Calendar;
 public class ChatActivity extends Activity {
     private static final String TAG = ChatActivity.class.getSimpleName();;
 
-    private ChatDB chatDB;
+    ChatDB chatDB;
 
-    private ListView talkView;
+    ListView talkView;
 
-    private Button messageButton;
+    Button messageButton;
 
-    private EditText messageText;
+    EditText messageText;
+
+    ChatMsgViewAdapter a;
 
     // private ChatMsgViewAdapter myAdapter;
 
@@ -42,6 +44,7 @@ public class ChatActivity extends Activity {
         talkView = (ListView) findViewById(R.id.list);
         messageButton = (Button) findViewById(R.id.MessageButton);
         messageText = (EditText) findViewById(R.id.MessageText);
+
 
         chatDB = new ChatDB(this);
         Cursor mCursor = chatDB.select();
@@ -60,8 +63,10 @@ public class ChatActivity extends Activity {
             }
             ChatMsgEntity newItem= new ChatMsgEntity(c_name,c_date,c_text,RId);
             list.add(newItem);
-            talkView.setAdapter(new ChatMsgViewAdapter(ChatActivity.this, list));
         }
+        a = new ChatMsgViewAdapter(ChatActivity.this, list);
+        talkView.setAdapter(a);
+        Log.d("FFFFFF", Thread.currentThread().getName());
 
         OnClickListener messageButtonListener = new OnClickListener() {
 
@@ -74,17 +79,18 @@ public class ChatActivity extends Activity {
                 String msgText = getText();
                 int RId = R.layout.list_he_item;
                 int RId2 = R.layout.list_me_item;
-
+                Log.d("FFF",Thread.currentThread().getName());
                 ChatMsgEntity newMessage = new ChatMsgEntity("ChaoLiu", date, msgText,RId);
                 list.add(newMessage);
                 chatDB.insert(newMessage.getName(), newMessage.getDate(), newMessage.getText());
-                ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
-                list.add(newMessage2);
+                //ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
+                //list.add(newMessage2);
                 // list.add(d0);
-                chatDB.insert(newMessage2.getName(), newMessage2.getDate(), newMessage2.getText());
+                //chatDB.insert(newMessage2.getName(), newMessage2.getDate(), newMessage2.getText());
 
-                talkView.setAdapter(new ChatMsgViewAdapter(ChatActivity.this, list));
+                //talkView.setAdapter(new ChatMsgViewAdapter(ChatActivity.this, list));
                 messageText.setText("");
+                a.notifyDataSetChanged();
                 // myAdapter.notifyDataSetChanged();
             }
 

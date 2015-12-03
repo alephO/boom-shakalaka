@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.io.*;
 import java.net.Socket;
 import java.util.concurrent.TimeUnit;
+import android.app.LocalActivityManager;
 
 public class MainActivity extends Activity {
 
@@ -29,21 +30,14 @@ public class MainActivity extends Activity {
 	TextView txtUNAME;
 	TextView txtUID;
 	PrintWriter uout=null;
-	private BroadcastReceiver receiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Bundle bundle=intent.getExtras();
-			txtUID.setText(bundle.getString("message"));
-		}
-	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		txtUNAME=(TextView)findViewById(R.id.tUName);
 		txtUID=(TextView)findViewById(R.id.tUID);
-		/*try {
-			//socket = new InitConnectTask().execute().get(30, TimeUnit.SECONDS);
+/*		try {
+			socket = new InitConnectTask().execute().get(30, TimeUnit.SECONDS);
 		}
 		catch (Exception e){
 			Toast.makeText(getBaseContext(), "Connection timeout", Toast.LENGTH_SHORT).show();
@@ -54,7 +48,7 @@ public class MainActivity extends Activity {
 		catch (IOException e){
 			Toast.makeText(getBaseContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
 		}*/
-		new RecieveTask().execute(socket);
+		new RecieveTask().execute(this);
 	}
 
 	@Override
@@ -119,13 +113,12 @@ public class MainActivity extends Activity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("me.aleph0.pocketguide.recievem");
 
-		this.registerReceiver(this.receiver, filter);
+		//this.registerReceiver(this.receiver, filter);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		this.unregisterReceiver(this.receiver);
 	}
 
 	class InitConnectTask extends AsyncTask<Void, Void, Socket> {
@@ -165,13 +158,15 @@ public class MainActivity extends Activity {
         }
     }
 
-	class RecieveTask extends AsyncTask<Socket,String,String>{
-		Socket socket;
+	class RecieveTask extends AsyncTask<Activity,String,String>{
+		Activity a;
 		String recieve;
 		Exception excpt;
-		protected String doInBackground(Socket...s){
-			socket=s[0];
+		LocalActivityManager localActivityManager;
 
+		protected String doInBackground(Activity...ac){
+			a=ac[0];
+			localActivityManager = new LocalActivityManager(a,true);
 			/*try{
 				//PrintWriter uout = new PrintWriter(socket.getOutputStream(), true);
 				BufferedReader uin =
@@ -192,7 +187,7 @@ public class MainActivity extends Activity {
 			}*/
 			try {
 				for (int i = 0; i < 10000; i++) {
-					Log.d("PGD", "fuck you" + i);
+					//Log.d("PGD", "fuck you" + i);
 					publishProgress("fuck you" + i);
 					Thread.sleep(1000);
 				}
@@ -213,7 +208,8 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onProgressUpdate(String... values) {
 			super.onProgressUpdate(values);
-			Log.d("PGD",values[0]);
+			Log.d("PGD", values[0]);
+			//Log.d("PGD",localActivityManager.getCurrentActivity().getComponentName().toString());
 			/*String[] parts=values[0].split("#");
 			if(parts[0].equals("*status")){
 				if(parts[1].equals("login")){
@@ -228,7 +224,7 @@ public class MainActivity extends Activity {
 					}
 				}
 			}*/
-			SendBroadcast(values[0]);
+			//SendBroadcast(values[0]);
 		}
 
 		@Override
