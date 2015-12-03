@@ -14,7 +14,9 @@ import android.widget.TabHost;
 import android.app.Activity;
 
 public class MainActivity extends Activity {
-private TabHost myTabHost;
+    private TabHost myTabHost;
+    private TabHost bookTabHost;
+
     private static final String tag = "Event";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +24,13 @@ private TabHost myTabHost;
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        myTabHost = (TabHost) findViewById(R.id.tabHost);
-        myTabHost.setup();
+
         /*TabHost.TabSpec spec = myTabHost.newTabSpec("Start");
         spec.setIndicator("Start");
         spec.setContent(R.id.Client_tab1);
 */
+        myTabHost = (TabHost) findViewById(R.id.tabHost);
+        myTabHost.setup();
 
         myTabHost.addTab(myTabHost.newTabSpec("Start")
                 .setIndicator("Start")
@@ -53,8 +56,26 @@ private TabHost myTabHost;
                 // Intent intent = new Intent(Index_Page.this, Choose_Destination.class);
                 startActivity(new Intent("com.brandeis.Choose_Destination"));
                 //Log.d(TAG, "start a new activity");
+
             }
         });
+//
+//        bookTabHost = (TabHost) findViewById(R.id.booktabHost);
+//        bookTabHost.setup();
+//
+//        bookTabHost.addTab(bookTabHost.newTabSpec("Upcoming")
+//        .setIndicator("Upcoming")
+//        .setContent(R.id.book_tab1));
+//
+//        bookTabHost.addTab(bookTabHost.newTabSpec("pending")
+//        .setIndicator("pending")
+//                .setContent(R.id.book_tab2)
+//        );
+//
+//        bookTabHost.addTab(bookTabHost.newTabSpec("Previous")
+//        .setIndicator("Previous")
+//        .setContent(R.id.book_tab3));
+
     }
 
     public void onStart()
