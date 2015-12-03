@@ -118,11 +118,11 @@ public class MainActivity extends Activity {
 		    public void onClick(View v) {
 			    uname = t4E1.getText().toString();
 			    String password = t4E2.getText().toString();
-			    if(uout!=null && uname!=null && password!=null &&uid!=-1){
+			    if(uout!=null && uname!=null && password!=null &&uid==-1){
 				    uout.write("*login#"+uname+"#"+password+"#\n");
 				    uout.flush();
 			    }
-			    else if(uout!=null&&uid==-1){
+			    else if(uout!=null&&uid!=-1){
 				    uout.write("*logout#\n");
 				    uout.flush();
 			    }
@@ -180,7 +180,18 @@ public class MainActivity extends Activity {
 
     public void onDestroy(){
         super.onDestroy();
-        Log.d(tag, "In the onDestroy() event");
+	    if(uout!=null&&uid!=-1){
+		    uout.write("*discon#\n");
+		    uout.flush();
+	    }
+	    try {
+		    uout.close();
+		    socket.close();
+	    }
+	    catch (IOException e){
+		    e.printStackTrace();
+	    }
+	    Log.d(tag, "In the onDestroy() event");
     }
 
 
