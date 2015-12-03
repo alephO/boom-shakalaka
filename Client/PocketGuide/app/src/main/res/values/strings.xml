@@ -31,6 +31,9 @@
     <string name="congratulations_done">Done</string>
     <string name="from_date">From date</string>
     <string name="to_date">To date</string>
+    <string name="upcoming_title">Upcoming Trips</string>
+    <string name="pending_title">Pending Trips</string>
+    <string name="previous_title">Previous Trips</string>
     <string-array name="location_list">
         <item>Afghanistan</item>
         <item>Albania</item>
