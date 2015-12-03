@@ -299,7 +299,7 @@ public class MainActivity extends Activity {
 					t4T2.setVisibility(View.GONE);
 					uid=-1;
 					t4L1.setText("Password\t\t\t");
-					btn.setText("Log out");
+					btn.setText("Log in");
 				}
 			}
 			SendBroadcast(values[0]);
