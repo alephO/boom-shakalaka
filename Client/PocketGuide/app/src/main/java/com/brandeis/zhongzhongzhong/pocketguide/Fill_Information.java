@@ -1,7 +1,8 @@
 package com.brandeis.zhongzhongzhong.pocketguide;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -25,7 +26,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-public class Fill_Information extends AppCompatActivity {
+public class Fill_Information extends Activity {
     private static final String TAG = "test";
     //final EditText et = (EditText) findViewById(R.id.fillinformation_note);
     public String[] requirements;
