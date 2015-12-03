@@ -1,7 +1,10 @@
 package me.aleph0.test1;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -26,14 +29,21 @@ public class MainActivity extends Activity {
 	TextView txtUNAME;
 	TextView txtUID;
 	PrintWriter uout=null;
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Bundle bundle=intent.getExtras();
+			txtUID.setText(bundle.getString("message"));
+		}
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		txtUNAME=(TextView)findViewById(R.id.tUName);
 		txtUID=(TextView)findViewById(R.id.tUID);
-		try {
-			socket = new InitConnectTask().execute().get(30, TimeUnit.SECONDS);
+		/*try {
+			//socket = new InitConnectTask().execute().get(30, TimeUnit.SECONDS);
 		}
 		catch (Exception e){
 			Toast.makeText(getBaseContext(), "Connection timeout", Toast.LENGTH_SHORT).show();
@@ -43,7 +53,7 @@ public class MainActivity extends Activity {
 		}
 		catch (IOException e){
 			Toast.makeText(getBaseContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
-		}
+		}*/
 		new RecieveTask().execute(socket);
 	}
 
@@ -103,6 +113,20 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("me.aleph0.pocketguide.recievem");
+
+		this.registerReceiver(this.receiver, filter);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		this.unregisterReceiver(this.receiver);
+	}
 
 	class InitConnectTask extends AsyncTask<Void, Void, Socket> {
         Exception excpt;
@@ -148,29 +172,49 @@ public class MainActivity extends Activity {
 		protected String doInBackground(Socket...s){
 			socket=s[0];
 
-			try{
+			/*try{
 				//PrintWriter uout = new PrintWriter(socket.getOutputStream(), true);
 				BufferedReader uin =
 						new BufferedReader(
 								new InputStreamReader(socket.getInputStream()));
-				while(true){
-					recieve=uin.readLine();
-					publishProgress(recieve);
+				//while(true){
+				//	recieve=uin.readLine();
+				//	publishProgress(recieve);
+				//}
+				while(int i=0;i<10000;i++){
+					Log.d("PGD","fuck you"+i);
 				}
 			}
 			catch (Exception e){
 				excpt=e;
 				this.cancel(true);
 				Log.d("PGD",e.getStackTrace().toString());
+			}*/
+			try {
+				for (int i = 0; i < 10000; i++) {
+					Log.d("PGD", "fuck you" + i);
+					publishProgress("fuck you" + i);
+					Thread.sleep(1000);
+				}
 			}
+			catch (Exception e){
+				;
+			}
+
 			return "OK";
+		}
+		public void SendBroadcast(String s){
+			Intent intent = new Intent();
+			intent.setAction("me.aleph0.pocketguide.recievem");
+			intent.putExtra("message",s);
+			sendBroadcast(intent);
 		}
 
 		@Override
 		protected void onProgressUpdate(String... values) {
 			super.onProgressUpdate(values);
 			Log.d("PGD",values[0]);
-			String[] parts=values[0].split("#");
+			/*String[] parts=values[0].split("#");
 			if(parts[0].equals("*status")){
 				if(parts[1].equals("login")){
 					if(parts[2].equals("-1")){
@@ -183,7 +227,8 @@ public class MainActivity extends Activity {
 						txtUID.setText(parts[2]);
 					}
 				}
-			}
+			}*/
+			SendBroadcast(values[0]);
 		}
 
 		@Override

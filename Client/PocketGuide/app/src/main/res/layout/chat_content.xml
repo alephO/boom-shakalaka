@@ -6,39 +6,21 @@
     android:background="@drawable/sea"
     >
 
-    <Button
-        android:id="@+id/btnChat"
+    <TextView
+        android:id="@+id/saver"
         android:layout_width="120dp"
         android:layout_height="1dp"
         android:text="Chat"
         android:textColor="#0000ff"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         />
 
-    <Button
-        android:id="@+id/btnService"
-        android:layout_width="120dp"
-        android:layout_height="1dp"
-        android:text="Service"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/btnChat"
-       />
-
-    <Button
-        android:id="@+id/btnProfile"
-        android:layout_width="120dp"
-        android:layout_height="1dp"
-        android:text="Profile"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/btnService"
-       />
 
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above = "@+id/btnChat"
+        android:layout_above = "@+id/saver"
         android:id = "@+id/MessageBox"
         >
         <EditText
