@@ -82,6 +82,7 @@ public class MainActivity extends Activity {
         View.OnClickListener chat_btn_listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+	            ChatActHandler.setuid(uid);
                 startActivity(new Intent("com.brandeis.ChatActivity"));
             }
         };
