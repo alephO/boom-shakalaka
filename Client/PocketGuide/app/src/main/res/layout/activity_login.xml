@@ -18,19 +18,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="User name:\t\t"
-                android:fontFamily="sans-serif"
                 android:layout_gravity="center_horizontal" />
-	        <EditText
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/t4EName" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/t4EName" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/t4UName"
                 android:text="Not logged in"
-	            android:visibility="gone"
-                android:layout_gravity="center_horizontal"/>
+                android:visibility="gone"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,31 +37,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-	            android:id="@+id/t4l3"
+                android:id="@+id/t4l3"
                 android:text="Password:\t\t\t\t"
-                android:fontFamily="sans-serif"
                 android:layout_gravity="center_horizontal" />
-	        <EditText
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/t4EPass"
-		        android:password="true"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/t4EPass"
+                android:password="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/t4UID"
                 android:text="Will display when logged in"
-	            android:visibility="gone"
-                android:layout_gravity="center_horizontal"/>
+                android:visibility="gone"/>
         </LinearLayout>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:fontFamily="sans-serif"
-	        android:id="@+id/bLogin"/>
-
+            android:id="@+id/bLogin"/>
     </LinearLayout>
 
 </RelativeLayout>

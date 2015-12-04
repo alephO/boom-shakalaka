@@ -1,8 +1,10 @@
 package com.brandeis.zhongzhongzhong.pocketguide;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
@@ -39,7 +41,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 
         /*TabHost.TabSpec spec = myTabHost.newTabSpec("Start");
         spec.setIndicator("Start");
@@ -102,7 +103,7 @@ public class MainActivity extends Activity {
 		    try {
 			    uout = new PrintWriter(socket.getOutputStream(), true);
 			    WriterHandler.setPrintWriter(uout);
-		    } catch (IOException e) {
+			} catch (IOException e) {
 			    Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
 		    }
 	    }
@@ -132,22 +133,6 @@ public class MainActivity extends Activity {
 			    }
 		    }
 	    });
-//
-//        bookTabHost = (TabHost) findViewById(R.id.booktabHost);
-//        bookTabHost.setup();
-//
-//        bookTabHost.addTab(bookTabHost.newTabSpec("Upcoming")
-//        .setIndicator("Upcoming")
-//        .setContent(R.id.book_tab1));
-//
-//        bookTabHost.addTab(bookTabHost.newTabSpec("pending")
-//        .setIndicator("pending")
-//                .setContent(R.id.book_tab2)
-//        );
-//
-//        bookTabHost.addTab(bookTabHost.newTabSpec("Previous")
-//        .setIndicator("Previous")
-//        .setContent(R.id.book_tab3));
 
     }
 
@@ -339,6 +324,17 @@ public class MainActivity extends Activity {
 
 		}
 	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+			if(resultCode == Activity.RESULT_OK){
+			}
+			if (resultCode == Activity.RESULT_CANCELED) {
+				//Write your code if there's no result
+			}
+		}
+	}//onActivityResult
 
 
 }
