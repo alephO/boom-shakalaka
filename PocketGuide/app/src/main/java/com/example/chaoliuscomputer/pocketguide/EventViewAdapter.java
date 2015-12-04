@@ -14,14 +14,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ChatMsgViewAdapter extends BaseAdapter{
-    private static final String TAG = ChatMsgViewAdapter.class.getSimpleName();
+/**
+ * Created by ChaoLiu's Computer on 2015/12/3.
+ */
+public class EventViewAdapter extends BaseAdapter {
+    private static final String TAG = EventViewAdapter.class.getSimpleName();
 
-    private ArrayList<ChatMsgEntity> coll;
+    private ArrayList<EventEntity> coll;
 
     private Context ctx;
 
-    public ChatMsgViewAdapter(Context context, ArrayList<ChatMsgEntity> coll) {
+    public EventViewAdapter(Context context, ArrayList<EventEntity> coll) {
         ctx = context;
         this.coll = coll;
     }
@@ -52,21 +55,19 @@ public class ChatMsgViewAdapter extends BaseAdapter{
 
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.v(TAG, "getView>>>>>>>");
-        ChatMsgEntity entity = coll.get(position);
+        EventEntity entity = coll.get(position);
         int itemLayout = entity.getLayoutID();
 
         LinearLayout layout = new LinearLayout(ctx);
         LayoutInflater vi = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         vi.inflate(itemLayout, layout, true);
 
-        TextView tvName = (TextView) layout.findViewById(R.id.messagedetail_row_name);
-        tvName.setText(entity.getName());
-
-        TextView tvDate = (TextView) layout.findViewById(R.id.messagedetail_row_date);
+        TextView tvDate = (TextView) layout.findViewById(R.id.date);
         tvDate.setText(entity.getDate());
 
-        TextView tvText = (TextView) layout.findViewById(R.id.messagedetail_row_text);
-        tvText.setText(entity.getText());
+        TextView tvPlace = (TextView) layout.findViewById(R.id.place);
+        tvPlace.setText(entity.getPlace());
+
         return layout;
     }
 
@@ -87,4 +88,5 @@ public class ChatMsgViewAdapter extends BaseAdapter{
 
     public void unregisterDataSetObserver(DataSetObserver observer) {
     }
+
 }

@@ -35,7 +35,7 @@ public class activity_profile extends Activity{
     private Button.OnClickListener button_listener1 = new Button.OnClickListener() {
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(activity_profile.this, ChatActivity.class);
+            intent.setClass(activity_profile.this, ChatListActivity.class);
             startActivity(intent);
         }
     };
