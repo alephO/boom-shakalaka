@@ -8,6 +8,7 @@ import android.app.Activity;
 public class ChatActHandler {
 	private static boolean open;
 	private static Activity activity;
+	private static int uid;
 
 	public static synchronized boolean getOpen(){
 		return open;
@@ -23,5 +24,13 @@ public class ChatActHandler {
 
 	public static synchronized void setActivity(Activity activity){
 		ChatActHandler.activity = activity;
+	}
+
+	public static synchronized int getuid(){
+		return uid;
+	}
+
+	public static synchronized void setuid(int uid){
+		ChatActHandler.uid = uid;
 	}
 }

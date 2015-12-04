@@ -36,6 +36,8 @@ public class ChatActivity extends Activity {
 
     PrintWriter uout;
 
+    int myid;
+
 
     // private ChatMsgViewAdapter myAdapter;
 
@@ -50,6 +52,8 @@ public class ChatActivity extends Activity {
         Log.v(TAG, "onCreate >>>>>>");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_content);
+
+        myid = ChatActHandler.getuid();
 
 
         talkView = (ListView) findViewById(R.id.list);
@@ -96,7 +100,7 @@ public class ChatActivity extends Activity {
                 ChatMsgEntity newMessage = new ChatMsgEntity("ChaoLiu", date, msgText,RId);
                 //list.add(newMessage);
                 chatDB.insert(newMessage.getName(), newMessage.getDate(), newMessage.getText());
-                uout.print("*chatt#aed#dea#\n");
+                uout.print("*chatt#"+"0"+"#\n");
                 uout.flush();
                 //ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
                 //list.add(newMessage2);
