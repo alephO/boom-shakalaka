@@ -1,10 +1,10 @@
 package com.brandeis.zhongzhongzhong.pocketguide;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Choose_Destination extends AppCompatActivity {
+public class Choose_Destination extends Activity {
 
     /* location list should be retrieved from database, but now just use string stored in the resource file*/
     public String [] location;
