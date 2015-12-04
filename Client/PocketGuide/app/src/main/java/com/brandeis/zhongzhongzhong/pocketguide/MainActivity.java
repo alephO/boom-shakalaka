@@ -316,7 +316,18 @@ public class MainActivity extends Activity {
 				}
 			}
 			if(parts[0].equals("*chatf")){
-				chatDB.insert("TianjieZhong","last centry",parts[2]);
+				chatDB.insert("TianjieZhong", "last centry", parts[2]);
+				//sendBroadcast(new Intent("com.brandeis.zhongzhongzhong.REFRESH"));
+				if(ChatActHandler.getOpen()==true){
+					ChatActivity aaa =(ChatActivity) ChatActHandler.getActivity();
+					/*Intent in= aaa.getIntent();
+					aaa.overridePendingTransition(0, 0);
+					in.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+					aaa.finish();
+					aaa.overridePendingTransition(0,0);
+					startActivity(in);*/
+					aaa.fresh();
+				}
 			}
 			SendBroadcast(values[0]);
 		}

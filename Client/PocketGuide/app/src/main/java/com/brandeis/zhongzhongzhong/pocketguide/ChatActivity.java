@@ -1,5 +1,6 @@
 package com.brandeis.zhongzhongzhong.pocketguide;
 
+import android.content.BroadcastReceiver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -35,11 +36,15 @@ public class ChatActivity extends Activity {
 
     PrintWriter uout;
 
+
     // private ChatMsgViewAdapter myAdapter;
 
     private ArrayList<ChatMsgEntity> list = new ArrayList<ChatMsgEntity>();
 
 
+    public void fresh(){
+        this.onCreate(null);
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         Log.v(TAG, "onCreate >>>>>>");
@@ -109,7 +114,19 @@ public class ChatActivity extends Activity {
         messageButton.setOnClickListener(messageButtonListener);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ChatActHandler.setOpen(true);
+        ChatActHandler.setActivity(this);
+    }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        ChatActHandler.setOpen(false);
+        ChatActHandler.setActivity(null);
+    }
 
     // should be redefine in the future
     private String getName() {
