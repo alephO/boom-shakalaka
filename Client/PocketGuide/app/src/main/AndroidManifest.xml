@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".Fill_Information"
-            android:label="@string/title_activity_fill__information" >
+            android:label="@string/title_activity_fill__information"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="com.brandeis.Fill_Information" />
 

@@ -20,6 +20,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 import android.content.Intent;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +34,7 @@ public class Fill_Information extends Activity {
     static String fromfromdate;
     static String totodate;
     static String notenote;
+    PrintWriter uout;
 
 
     @Override
@@ -44,6 +46,7 @@ public class Fill_Information extends Activity {
         TextView location_title = (TextView) findViewById(R.id.fillinformation_location_title);
         location_title.setText(location_name);
         //Log.d("blabla", location_name);
+        uout = WriterHandler.getPrintWriter();
 
         final SimpleDateFormat dateFormatter;
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -154,6 +157,10 @@ public class Fill_Information extends Activity {
                 Log.d("third choice", adapter.getItem(2));
                 Log.d("fourth choice", adapter.getItem(3));
                 Log.d("notes",notenote);
+
+                uout.print("*request#"+ location_name + "#" + fromfromdate + "#" + totodate + "#" + adapter.getItem(0) + "#" + adapter.getItem(1)
+                        + "#" + adapter.getItem(2) + "#" + adapter.getItem(3) + "#" + notenote +"#\n");
+                uout.flush();
 
                 Intent intent = new Intent(Fill_Information.this, Confirmation_Page.class);
                 startActivity(intent);
