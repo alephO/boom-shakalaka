@@ -101,8 +101,9 @@ public class MainActivity extends Activity {
 	    else{
 		    try {
 			    uout = new PrintWriter(socket.getOutputStream(), true);
+			    WriterHandler.setPrintWriter(uout);
 		    } catch (IOException e) {
-			    Toast.makeText(getBaseContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
+			    Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
 		    }
 	    }
 		new RecieveTask().execute(socket,this);
@@ -240,6 +241,7 @@ public class MainActivity extends Activity {
 		TextView t4T2 = (TextView) findViewById(R.id.t4UID);
 		TextView t4L1 = (TextView) findViewById(R.id.t4l3);
 		Button btn = (Button)findViewById(R.id.bLogin);
+		ChatDB chatDB;
 
 		protected String doInBackground(Object...o){
 			socket=(Socket)o[0];
@@ -250,6 +252,7 @@ public class MainActivity extends Activity {
 				BufferedReader uin =
 						new BufferedReader(
 								new InputStreamReader(socket.getInputStream()));
+				chatDB=new ChatDB(maina);
 				while(true){
 					recieve=uin.readLine();
 					publishProgress(recieve);
@@ -311,6 +314,9 @@ public class MainActivity extends Activity {
 					t4L1.setText("Password\t\t\t");
 					btn.setText("Log in");
 				}
+			}
+			if(parts[0].equals("*chatf")){
+				chatDB.insert("TianjieZhong","last centry",parts[2]);
 			}
 			SendBroadcast(values[0]);
 		}
