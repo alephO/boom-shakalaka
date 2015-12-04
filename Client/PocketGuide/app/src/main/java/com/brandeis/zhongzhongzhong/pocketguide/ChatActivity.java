@@ -100,7 +100,7 @@ public class ChatActivity extends Activity {
                 ChatMsgEntity newMessage = new ChatMsgEntity("ChaoLiu", date, msgText,RId);
                 //list.add(newMessage);
                 chatDB.insert(newMessage.getName(), newMessage.getDate(), newMessage.getText());
-                uout.print("*chatt#"+"0"+"#\n");
+                uout.print("*chatt#" + "1" + "#" + newMessage.getText()+"#\n");
                 uout.flush();
                 //ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
                 //list.add(newMessage2);

@@ -7,6 +7,7 @@
 import java.net.*;
 import java.util.*;
 import java.io.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ServerTest {
 	
@@ -14,6 +15,8 @@ public class ServerTest {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("resource")
 		ServerSocket ss=new ServerSocket(6179);
+		ConcurrentHashMap<Integer,PrintWriter> concurrentHashMap = new ConcurrentHashMap<Integer,PrintWriter>();
+		HashMapHandler.setConcurrentHashMap(concurrentHashMap);
 		while(true){
 			System.out.println("new circle");
 			Socket s=ss.accept();
@@ -32,6 +35,7 @@ public class ServerTest {
 				String st;
 				OutputStream os=s.getOutputStream();
 				PrintWriter ps=new PrintWriter(os);
+				int uid=-1;
 				while (true){
 					st= sc.nextLine();
 					System.out.println(st);
@@ -41,23 +45,49 @@ public class ServerTest {
 					}
 					else if(parts[0].equals("*login")){
 						if(parts[1].equals("user1")&&parts[2].equals("111"))
-							ps.println("*status#login#1#");
+							uid=1;
 						else if(parts[1].equals("user2")&&parts[2].equals("222"))
-							ps.println("*status#login#2#");
+							uid=2;
 						else if(parts[1].equals("user3")&&parts[2].equals("333"))
-							ps.println("*status#login#3#");
+							uid=3;
+						else if(parts[1].equals("000")&&parts[2].equals("000"))
+							uid=4;
 						else
-							ps.println("*status#login#-1#");
+							uid=-1;
+						ps.println("*status#login#"+uid+"#");
+						if(uid!=-1)
+							HashMapHandler.getConcurrentHashMap().put(uid,ps);
 					}
 					else if(parts[0].equals("*logout")){
 						ps.println("*status#logout#");
 					}
 					else if(parts[0].equals("*chatt")){
-						ps.println("*chatf#0#I'm not listening. FUCK YOU!#");
+						int touid=Integer.parseInt(parts[1]);
+						//PrintWriter pst = HashMapHandler.getConcurrentHashMap().get(touid);
+						
+						PrintWriter pst = null;
+						for(Integer i :HashMapHandler.getConcurrentHashMap().keySet()){
+							if(i.equals(touid)){
+								pst = HashMapHandler.getConcurrentHashMap().get(i);
+								break;
+							}
+						}
+						if(pst!=null) {
+							pst.println("*chatf#" + uid + "#" + parts[2] + "#");
+							pst.flush();
+						}
+						else
+							ps.println("*status#send#-1#");
+							
 					}					
 					else
 						ps.println("*unexp#"+st+"#");
 					ps.flush();
+				}
+				for(Integer i :HashMapHandler.getConcurrentHashMap().keySet()){
+					if(i.equals(uid)){
+						HashMapHandler.getConcurrentHashMap().remove(i);
+					}
 				}				
 				ps.close();
 				sc.close();
