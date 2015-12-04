@@ -1,6 +1,7 @@
 package com.example.chaoliuscomputer.pocketguide;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ChatActivity extends Activity {
-    private static final String TAG = ChatActivity.class.getSimpleName();;
+    private static final String TAG = ChatActivity.class.getSimpleName();
 
     private ChatDB chatDB;
 
@@ -29,8 +30,6 @@ public class ChatActivity extends Activity {
 
     private EditText messageText;
 
-    // private ChatMsgViewAdapter myAdapter;
-
     private ArrayList<ChatMsgEntity> list = new ArrayList<ChatMsgEntity>();
 
     public void onCreate(Bundle savedInstanceState) {
@@ -38,18 +37,30 @@ public class ChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        /////////////////////receive the chat name message
+
+        Bundle bundle = this.getIntent().getExtras();
+        final String pass_name=bundle.getString("name");
+        //////////////////////
+
         Button button1=(Button)findViewById(R.id.btnService);
         button1.setOnClickListener(button_listener1);
 
         Button button2=(Button)findViewById(R.id.btnProfile);
         button2.setOnClickListener(button_listener2);
 
+        Button button3=(Button)findViewById(R.id.btnChat);
+        button3.setOnClickListener(button_listener3);
+
         talkView = (ListView) findViewById(R.id.list);
         messageButton = (Button) findViewById(R.id.MessageButton);
         messageText = (EditText) findViewById(R.id.MessageText);
 
         chatDB = new ChatDB(this);
-        Cursor mCursor = chatDB.select();
+        SQLiteDatabase db = chatDB.getReadableDatabase();
+
+        chatDB.CreateTable(db,pass_name);
+        Cursor mCursor = chatDB.select1(pass_name);
 
         for(mCursor.moveToFirst();!mCursor.isAfterLast();mCursor.moveToNext())
         {
@@ -57,7 +68,7 @@ public class ChatActivity extends Activity {
             String c_date = mCursor.getString(2);
             String c_text = mCursor.getString(3);
             int RId ;
-            if(c_name.equals("ChaoLiu")){
+            if(c_name.equals("Me")){
                 RId= R.layout.list_he_item;
             }
             else{
@@ -69,7 +80,6 @@ public class ChatActivity extends Activity {
         }
 
         OnClickListener messageButtonListener = new OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
@@ -80,17 +90,16 @@ public class ChatActivity extends Activity {
                 int RId = R.layout.list_he_item;
                 int RId2 = R.layout.list_me_item;
 
-                ChatMsgEntity newMessage = new ChatMsgEntity("ChaoLiu", date, msgText,RId);
+                ChatMsgEntity newMessage = new ChatMsgEntity("Me", date, msgText,RId);
                 list.add(newMessage);
-                chatDB.insert(newMessage.getName(), newMessage.getDate(), newMessage.getText());
-                ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
+                chatDB.insert1(pass_name,newMessage.getName(), newMessage.getDate(), newMessage.getText());
+
+                ChatMsgEntity newMessage2 = new ChatMsgEntity(pass_name,date, msgText,RId2);
                 list.add(newMessage2);
-                // list.add(d0);
-                chatDB.insert(newMessage2.getName(), newMessage2.getDate(), newMessage2.getText());
+                chatDB.insert1(pass_name,newMessage2.getName(), newMessage2.getDate(), newMessage2.getText());
 
                 talkView.setAdapter(new ChatMsgViewAdapter(ChatActivity.this, list));
                 messageText.setText("");
-                // myAdapter.notifyDataSetChanged();
             }
 
         };
@@ -113,6 +122,14 @@ public class ChatActivity extends Activity {
         }
     };
 
+    private Button.OnClickListener button_listener3 = new Button.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(ChatActivity.this, ChatListActivity.class);
+            startActivity(intent);
+        }
+    };
+
     // should be redefine in the future
     private String getName() {
         return getResources().getString(R.string.myDisplayName);
@@ -130,7 +147,6 @@ public class ChatActivity extends Activity {
         return date;
     }
 
-    // should be redefine in the future
     private String getText() {
         return messageText.getText().toString();
     }
