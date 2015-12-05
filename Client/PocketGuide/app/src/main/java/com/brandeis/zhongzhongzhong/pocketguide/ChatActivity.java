@@ -2,6 +2,7 @@ package com.brandeis.zhongzhongzhong.pocketguide;
 
 import android.content.BroadcastReceiver;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -53,6 +54,10 @@ public class ChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_content);
 
+        Bundle bundle = this.getIntent().getExtras();
+        final String pass_name = bundle.getString("name");
+        final int hisid = bundle.getInt("hisid");
+
         myid = ChatActHandler.getuid();
 
 
@@ -62,7 +67,10 @@ public class ChatActivity extends Activity {
 
 
         chatDB = new ChatDB(this);
-        Cursor mCursor = chatDB.select();
+        SQLiteDatabase db= chatDB.getReadableDatabase();
+
+        chatDB.CreateTable(db,pass_name);  //
+        Cursor mCursor = chatDB.select1(pass_name);
         uout=WriterHandler.getPrintWriter();
 
         for(mCursor.moveToFirst();!mCursor.isAfterLast();mCursor.moveToNext())
@@ -71,7 +79,7 @@ public class ChatActivity extends Activity {
             String c_date = mCursor.getString(2);
             String c_text = mCursor.getString(3);
             int RId ;
-            if(c_name.equals("ChaoLiu")){
+            if(c_name.equals("Me")){
                 RId= R.layout.list_he_item;
             }
             else{
@@ -79,10 +87,11 @@ public class ChatActivity extends Activity {
             }
             ChatMsgEntity newItem= new ChatMsgEntity(c_name,c_date,c_text,RId);
             list.add(newItem);
+            a = new ChatMsgViewAdapter(ChatActivity.this, list);
+            talkView.setAdapter(a);
         }
         //list.add(new ChatMsgEntity("ChaoLiu","dwqd","QDWD",R.layout.list_me_item));
-        a = new ChatMsgViewAdapter(ChatActivity.this, list);
-        talkView.setAdapter(a);
+
         Log.d("FFFFFF", Thread.currentThread().getName());
 
         OnClickListener messageButtonListener = new OnClickListener() {
@@ -97,10 +106,10 @@ public class ChatActivity extends Activity {
                 int RId = R.layout.list_he_item;
                 int RId2 = R.layout.list_me_item;
                 Log.d("FFF", Thread.currentThread().getName());
-                ChatMsgEntity newMessage = new ChatMsgEntity("ChaoLiu", date, msgText,RId);
+                ChatMsgEntity newMessage = new ChatMsgEntity("Me", date, msgText,RId);
                 //list.add(newMessage);
-                chatDB.insert(newMessage.getName(), newMessage.getDate(), newMessage.getText());
-                uout.print("*chatt#" + "1" + "#" + newMessage.getText()+"#\n");
+                chatDB.insert1(pass_name, newMessage.getName(), newMessage.getDate(), newMessage.getText());
+                uout.print("*chatt#" + hisid + "#" + newMessage.getText()+"#\n");
                 uout.flush();
                 //ChatMsgEntity newMessage2 = new ChatMsgEntity("TianjieZhong",date, msgText,RId2);
                 //list.add(newMessage2);

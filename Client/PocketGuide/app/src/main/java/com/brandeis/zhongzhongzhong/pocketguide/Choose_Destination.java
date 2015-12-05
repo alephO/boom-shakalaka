@@ -90,6 +90,7 @@ public class Choose_Destination extends Activity {
                 //int selected = adapter.getPosition(text);
                 i.putExtra("location_name", text);
                 startActivity(i);
+                finish();
 
             }
         });

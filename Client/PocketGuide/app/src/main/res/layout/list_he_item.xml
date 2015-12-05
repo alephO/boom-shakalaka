@@ -53,6 +53,6 @@
         android:layout_height="42dp"
         android:layout_gravity="bottom"
         android:id="@+id/messagegedetail_rov_icon"
-        android:background="@drawable/retouxiang"
+        android:background="@drawable/retouxiang2"
         />
 </LinearLayout>

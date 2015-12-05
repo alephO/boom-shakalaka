@@ -156,14 +156,25 @@ public class Fill_Information extends Activity {
                 Log.d("second choice", adapter.getItem(1));
                 Log.d("third choice", adapter.getItem(2));
                 Log.d("fourth choice", adapter.getItem(3));
-                Log.d("notes",notenote);
+                Log.d("notes", notenote);
 
-                uout.print("*request#"+ location_name + "#" + fromfromdate + "#" + totodate + "#" + adapter.getItem(0) + "#" + adapter.getItem(1)
-                        + "#" + adapter.getItem(2) + "#" + adapter.getItem(3) + "#" + notenote +"#\n");
+                uout.print("*request#" + location_name + "#" + fromfromdate + "#" + totodate + "#" + adapter.getItem(0) + "#" + adapter.getItem(1)
+                        + "#" + adapter.getItem(2) + "#" + adapter.getItem(3) + "#" + notenote + "#\n");
+                Log.d("PGD", "*request#" + location_name + "#" + fromfromdate + "#" + totodate + "#" + adapter.getItem(0) + "#" + adapter.getItem(1)
+                        + "#" + adapter.getItem(2) + "#" + adapter.getItem(3) + "#" + notenote + "#\n");
+                Log.d("PGD",uout.toString());
                 uout.flush();
+                try {
+                    Thread.sleep(2000);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
 
                 Intent intent = new Intent(Fill_Information.this, Confirmation_Page.class);
                 startActivity(intent);
+                finish();
             }
         };
         confirmbtn.setOnClickListener(clkconfirmbtn);

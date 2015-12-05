@@ -31,7 +31,7 @@
         <activity
             android:name=".Fill_Information"
             android:label="@string/title_activity_fill__information"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="com.brandeis.Fill_Information" />
 
@@ -96,7 +96,15 @@
             android:name=".Index_Page"
             android:label="@string/title_activity_index__page" >
         </activity>
+        <activity
+            android:name=".guide_accept_request"
+            android:label="@string/title_activity_guide_accept_request" >
+            <intent-filter>
+                <action android:name="com.brandeis.guide_accept_request" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

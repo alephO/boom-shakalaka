@@ -310,4 +310,5 @@
         <item>Transportation</item>
     </string-array>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_guide_accept_request">guide_accept_request</string>
 </resources>

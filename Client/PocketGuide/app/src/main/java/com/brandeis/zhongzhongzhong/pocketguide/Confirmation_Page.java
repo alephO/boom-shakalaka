@@ -19,9 +19,10 @@ public class Confirmation_Page extends Activity {
         View.OnClickListener clkdonebtn = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Confirmation_Page.this, MainActivity.class);
-                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+//                Intent intent = new Intent(Confirmation_Page.this, MainActivity.class);
+//                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+                finish();
             }
         };
         donebtn.setOnClickListener(clkdonebtn);
