@@ -36,6 +36,8 @@ public class ServerTest {
 				OutputStream os=s.getOutputStream();
 				PrintWriter ps=new PrintWriter(os);
 				int uid=-1;
+				String uname=null;
+				int istour = 1;
 				while (true){
 					st= sc.nextLine();
 					System.out.println(st);
@@ -44,17 +46,10 @@ public class ServerTest {
 						break;
 					}
 					else if(parts[0].equals("*login")){
-						if(parts[1].equals("user1")&&parts[2].equals("111"))
-							uid=1;
-						else if(parts[1].equals("user2")&&parts[2].equals("222"))
-							uid=2;
-						else if(parts[1].equals("user3")&&parts[2].equals("333"))
-							uid=3;
-						else if(parts[1].equals("000")&&parts[2].equals("000"))
-							uid=4;
-						else
-							uid=-1;
-						ps.println("*status#login#"+uid+"#");
+						ConnectPSQL cpsql = new ConnectPSQL();
+						uid = cpsl.verify(parts[1],parts[2]);
+						cpsql.close();
+						ps.println("*status#login#"+uid+"#"+istour+"#");
 						if(uid!=-1)
 							HashMapHandler.getConcurrentHashMap().put(uid,ps);
 					}
@@ -78,8 +73,23 @@ public class ServerTest {
 						}
 						else
 							ps.println("*status#send#-1#");
-							
-					}					
+					}		
+					else if(parts[0].equals("*request")){
+						PrintWriter pst = null;
+						String username;
+						for(Integer i :HashMapHandler.getConcurrentHashMap().keySet()){
+							if(i.equals(3)){
+								pst = HashMapHandler.getConcurrentHashMap().get(i);
+								break;
+							}
+						}
+						if(pst!=null) {
+							pst.println("*requestf#" + uid + "#" + uname + "#" + parts[1] + "#" + parts[2] + "#"+ parts[3] + "#"+ parts[4] + "#"+ parts[5] + "#"+ parts[6] + "#"+ parts[7] + "#"+ parts[8] + "#");
+							pst.flush();
+						}
+						else
+							ps.println("*status#request#-1#");						
+					}				
 					else
 						ps.println("*unexp#"+st+"#");
 					ps.flush();

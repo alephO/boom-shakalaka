@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">PocketGuide</string>
-    <string name="service">Your Service</string>
-    <string name="save">save</string>
-    <string name="cancel">cancel</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="myDisplayName">ChattingBox</string>>
-</resources>
